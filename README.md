@@ -19,6 +19,14 @@ Lombok Plugin
 -------------------
 * Need to Install lombok plugin.
 
+Swagger-UI
+---------------
+* Added swagger to test REST API from browser.
+
+Log4j
+---------------
+* Used Log4japi to write logs.
+
 Functions
 ----------------
  * Implemented JWT authentication (Spring Security)
