@@ -1,19 +1,19 @@
 # personal_diary_api
 Restful Monolithic Design using Spring Boot
 
-This maven project is first created from spring.io. Restful Monolithic Design using Spring Boot.
-
+This maven project is first created from spring.io.
 Postgres
 ---------------
 * Postgres 11 is used as database.
 * diarydb Database with user, role is kept under ./resources/db/diary_system.sql.
 * neet to execute the diary_system.sql before running the project.
-* User Info, Note Item, Category are recorded in the database.
+* User Info, Note Item, Category are recorded in the database. (database credentials are in appliantion.properties file)
 
 Redis(Memory storage)
 ----------------------
-1. Redis maintain key, value pair with TTL.
-2. JWT token expirations customization is handled thourg Redis TTL feature.
+* Neet to install redis (Redis credentials are in appliantion.properties file)
+* Redis maintain key, value pair with TTL.
+* JWT token expirations customization is handled thourg Redis TTL feature.
 
 Lombok Plugin
 -------------------
