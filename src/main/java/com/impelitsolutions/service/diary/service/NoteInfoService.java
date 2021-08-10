@@ -42,6 +42,7 @@ public class NoteInfoService {
         if(Utils.isOk(noteCategory.getId())){
             Optional<com.impelitsolutions.service.diary.model.NoteCategory> categoryEo = categoryRepository.findById(noteCategory.getId());
             if(categoryEo.isPresent()){
+                savedCategoryEO.setId(noteCategory.getId());
                 savedCategoryEO.setUpdatedBy(userId);
                 savedCategoryEO.setUpdatedAt(Timestamp.from(Instant.now()));
                 savedCategoryEO.setCreatedAt(categoryEo.get().getCreatedAt());
@@ -89,6 +90,7 @@ public class NoteInfoService {
         if(Utils.isOk(noteInfo.getId())){
             Optional<com.impelitsolutions.service.diary.model.NoteInfo> infoEo = noteInfoRepository.findById(noteInfo.getId());
             if(infoEo.isPresent()){
+                savedNoteInfoEo.setId(noteInfo.getId());
                 savedNoteInfoEo.setUpdatedBy(userId);
                 savedNoteInfoEo.setUpdatedAt(Timestamp.from(Instant.now()));
                 savedNoteInfoEo.setCreatedAt(infoEo.get().getCreatedAt());
@@ -116,13 +118,14 @@ public class NoteInfoService {
             if(infoEo.get().getCreatedBy().intValue() != userId.intValue()){
                 return new ApiResponse(false, "You are not authorized user to remote the note item!");
             }else {
-                noteInfoRepository.delete(infoEo.get());
+                baseRepository.updateByNativeQuery("delete from note_info where id = " + infoEo.get().getId(), null);
+//                noteInfoRepository.deleteById(infoEo.get().getId());
             }
         }else{
             return new ApiResponse(false, "Given Note not found!");
         }
 
-        return new ApiResponse(true, "Records Deleted Successfully!");
+        return new ApiResponse(true, "Record Deleted Successfully!");
     }
 
     public NoteCategoryResponse searchNoteCategory(NoteCategory criteria, Integer userId){
